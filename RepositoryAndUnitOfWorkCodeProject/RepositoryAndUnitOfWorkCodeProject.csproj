@@ -163,10 +163,13 @@
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Delete.cshtml" />
+    <Content Include="Views\StudentUnitOfWork\Index.cshtml" />
+    <Content Include="Views\StudentUnitOfWork\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\StudentUnitOfWorkController.cs" />
     <Compile Include="DAL\Course.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -199,6 +202,8 @@
     </Compile>
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\StudentRepository.cs" />
+    <Compile Include="Models\StudentRepositoryWithUnitOfWork.cs" />
+    <Compile Include="Models\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
