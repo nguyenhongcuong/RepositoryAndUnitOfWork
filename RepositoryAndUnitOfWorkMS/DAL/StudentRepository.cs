@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using RepositoryAndUnitOfWorkMS.Models;
+
+namespace RepositoryAndUnitOfWorkMS.DAL
+{
+    public class StudentRepository : IStudentRepository, IDisposable
+    {
+        private SchoolContext context;
+
+        public StudentRepository(SchoolContext context)
+        {
+            this.context = context;
+        }
+        public IEnumerable<Student> GetStudents()
+        {
+            return context.Students.ToList();
+        }
+
+        public Student GetStudentById(int? studentId)
+        {
+            return context.Students.Find(studentId);
+        }
+
+        public void InsertStudent(Student student)
+        {
+            context.Students.Add(student);
+        }
+
+        public void DeleteStudent(int studentId)
+        {
+            Student student = context.Students.Find(studentId);
+            context.Students.Remove(student);
+        }
+
+        public void UpdateStudent(Student student)
+        {
+            context.Entry(student).State = EntityState.Modified;
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        private bool disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+    }
+}
