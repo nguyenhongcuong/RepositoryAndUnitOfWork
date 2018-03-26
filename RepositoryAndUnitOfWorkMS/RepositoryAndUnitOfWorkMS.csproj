@@ -150,12 +150,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentRepositoryController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\IStudentRepository.cs" />
     <Compile Include="DAL\SchoolContext.cs" />
     <Compile Include="DAL\StudentRepository.cs" />
+    <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +193,11 @@
     <Content Include="Views\StudentRepository\Create.cshtml" />
     <Content Include="Views\StudentRepository\Edit.cshtml" />
     <Content Include="Views\StudentRepository\Delete.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\Details.cshtml" />
+    <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\Course\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
