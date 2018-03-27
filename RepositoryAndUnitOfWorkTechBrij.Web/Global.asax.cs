@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Autofac;
+using Autofac.Integration.Mvc;
+using RepositoryAndUnitOfWorkTechBrij.Web.Modules;
 
 namespace RepositoryAndUnitOfWorkTechBrij.Web
 {
@@ -13,6 +16,19 @@ namespace RepositoryAndUnitOfWorkTechBrij.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            //Autofac Configuration
+            var builder = new Autofac.ContainerBuilder();
+
+            builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
+
+            builder.RegisterModule(new RepositoryModule());
+            builder.RegisterModule(new ServiceModule());
+            builder.RegisterModule(new EfModule());
+
+            var container = builder.Build();
+
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }
